@@ -1,0 +1,6 @@
+Dmi1;Kop1;dmikop1@ynov.com
+Dmi2;Kop2;dmikop2@ynov.com
+Dmi3;Kop3;dmikop3@ynov.com
+Dmi4;Kop4;dmikop4@ynov.com
+Robin4;Tourne4;ro4@ynov.com
+Robin5;Tourne5;ro5@ynov.com
