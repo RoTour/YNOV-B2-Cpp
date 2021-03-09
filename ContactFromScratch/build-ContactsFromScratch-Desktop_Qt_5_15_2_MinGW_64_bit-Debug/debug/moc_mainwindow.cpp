@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[11];
-    char stringdata0[215];
+    char stringdata0[227];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,25 +33,25 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 12), // "populateList"
-QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 33), // "on_listContacts_currentRowCha..."
-QT_MOC_LITERAL(4, 59, 10), // "currentRow"
-QT_MOC_LITERAL(5, 70, 17), // "on_submit_clicked"
-QT_MOC_LITERAL(6, 88, 29), // "on_saveContactsButton_clicked"
-QT_MOC_LITERAL(7, 118, 21), // "on_addContact_clicked"
-QT_MOC_LITERAL(8, 140, 19), // "on_loadFile_clicked"
-QT_MOC_LITERAL(9, 160, 30), // "on_saveInNewFileButton_clicked"
-QT_MOC_LITERAL(10, 191, 23) // "on_importButton_clicked"
+QT_MOC_LITERAL(1, 11, 33), // "on_listContacts_currentRowCha..."
+QT_MOC_LITERAL(2, 45, 0), // ""
+QT_MOC_LITERAL(3, 46, 10), // "currentRow"
+QT_MOC_LITERAL(4, 57, 17), // "on_submit_clicked"
+QT_MOC_LITERAL(5, 75, 29), // "on_saveContactsButton_clicked"
+QT_MOC_LITERAL(6, 105, 21), // "on_addContact_clicked"
+QT_MOC_LITERAL(7, 127, 19), // "on_loadFile_clicked"
+QT_MOC_LITERAL(8, 147, 30), // "on_saveInNewFileButton_clicked"
+QT_MOC_LITERAL(9, 178, 23), // "on_importButton_clicked"
+QT_MOC_LITERAL(10, 202, 24) // "on_search_button_clicked"
 
     },
-    "MainWindow\0populateList\0\0"
-    "on_listContacts_currentRowChanged\0"
-    "currentRow\0on_submit_clicked\0"
+    "MainWindow\0on_listContacts_currentRowChanged\0"
+    "\0currentRow\0on_submit_clicked\0"
     "on_saveContactsButton_clicked\0"
     "on_addContact_clicked\0on_loadFile_clicked\0"
     "on_saveInNewFileButton_clicked\0"
-    "on_importButton_clicked"
+    "on_importButton_clicked\0"
+    "on_search_button_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -69,8 +69,8 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x08 /* Private */,
-       3,    1,   55,    2, 0x08 /* Private */,
+       1,    1,   54,    2, 0x08 /* Private */,
+       4,    0,   57,    2, 0x08 /* Private */,
        5,    0,   58,    2, 0x08 /* Private */,
        6,    0,   59,    2, 0x08 /* Private */,
        7,    0,   60,    2, 0x08 /* Private */,
@@ -79,8 +79,8 @@ static const uint qt_meta_data_MainWindow[] = {
       10,    0,   63,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    4,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -97,14 +97,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->populateList(); break;
-        case 1: _t->on_listContacts_currentRowChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 2: _t->on_submit_clicked(); break;
-        case 3: _t->on_saveContactsButton_clicked(); break;
-        case 4: _t->on_addContact_clicked(); break;
-        case 5: _t->on_loadFile_clicked(); break;
-        case 6: _t->on_saveInNewFileButton_clicked(); break;
-        case 7: _t->on_importButton_clicked(); break;
+        case 0: _t->on_listContacts_currentRowChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->on_submit_clicked(); break;
+        case 2: _t->on_saveContactsButton_clicked(); break;
+        case 3: _t->on_addContact_clicked(); break;
+        case 4: _t->on_loadFile_clicked(); break;
+        case 5: _t->on_saveInNewFileButton_clicked(); break;
+        case 6: _t->on_importButton_clicked(); break;
+        case 7: _t->on_search_button_clicked(); break;
         default: ;
         }
     }

@@ -86,6 +86,16 @@ Contact::Contact(QString infos)
     qDebug() << __PRETTY_FUNCTION__ << m_firstname << m_lastname << m_email << m_phoneNumber << m_comments;
 }
 
+Contact::Contact(const Contact &contact):
+    m_firstname(contact.firstname()),
+    m_lastname(contact.lastname()),
+    m_email(contact.email()),
+    m_phoneNumber(contact.phoneNumber()),
+    m_comments(contact.comments())
+{
+
+}
+
 
 
 

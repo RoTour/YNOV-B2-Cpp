@@ -16,6 +16,7 @@ public:
 
     Contact(QString firstname, QString lastname, QString email, QString phoneNumber, QString comments);
     Contact(QString infos);
+    Contact(Contact const &contact);
 
     QString firstname() const;
     void setFirstname(const QString &firstname);

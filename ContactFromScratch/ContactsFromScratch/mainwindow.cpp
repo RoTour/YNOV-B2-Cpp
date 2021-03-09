@@ -13,12 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->importButton->setEnabled(false);
     ui->addContact->setEnabled(false);
     ui->submit->setEnabled(false);
-//    m_contactsFileName = "contacts.txt";
-//    loadContacts();
 }
 
 MainWindow::~MainWindow() {
-    for (auto contact: m_contacts){
+    for (auto contact: qAsConst(m_contacts)){
         delete contact;
     }
     delete ui;
@@ -26,18 +24,37 @@ MainWindow::~MainWindow() {
 
 void MainWindow::populateList()
 {
+    populateList(m_contacts);
+}
+
+void MainWindow::populateList(QList<Contact *> list)
+{
     ui->listContacts->clear();
-    for(const auto &contact: qAsConst(m_contacts)) {
+    for(const auto &contact: qAsConst(list)) {
         qDebug() << contact->email();
         ui->listContacts->addItem(contact->email());
     }
+    m_currentContactsDisplayed = list;
+}
+
+QList<Contact *> MainWindow::filterList(QString filter)
+{
+    qDebug() << __PRETTY_FUNCTION__;
+    QList<Contact*> result = QList<Contact*>();
+    for(auto contact: qAsConst(m_contacts)){
+        if (contact->getLine().toLower().contains(filter.toLower())){
+            result.append(new Contact(*contact));
+        }
+    }
+    return result;
+
 }
 
 void MainWindow::on_listContacts_currentRowChanged(int currentRow)
 {
-    qDebug() << __PRETTY_FUNCTION__ << currentRow;
+//    qDebug() << __PRETTY_FUNCTION__ << currentRow;
     if (currentRow == -1) return;
-    m_currentContact = m_contacts.at(currentRow);
+    m_currentContact = m_currentContactsDisplayed.at(currentRow);
     populateForm();
 }
 
@@ -112,6 +129,12 @@ void MainWindow::reduceContactList()
     }
 }
 
+
+////////////////////////
+// UI actions handlers//
+////////////////////////
+
+
 void MainWindow::on_submit_clicked()
 {
     qDebug() << __PRETTY_FUNCTION__;
@@ -145,6 +168,7 @@ void MainWindow::on_loadFile_clicked()
     );
     m_contacts.clear();
     loadContacts();
+    m_currentContactsDisplayed = m_contacts;
     ui->listContacts->setCurrentRow(0);
     ui->editFile_label->setText(
         QString("Editing: " + m_contactsFileName.mid(m_contactsFileName.lastIndexOf("/")))
@@ -190,4 +214,12 @@ void MainWindow::on_importButton_clicked()
     loadContacts(importFilePath);
     reduceContactList();
     populateList();
+}
+
+void MainWindow::on_search_button_clicked()
+{
+    QString searchText = ui->search_textEdit->text();
+    qDebug() << __PRETTY_FUNCTION__ << searchText;
+    m_currentContactsDisplayed = filterList(QString(searchText));
+    populateList(m_currentContactsDisplayed);
 }

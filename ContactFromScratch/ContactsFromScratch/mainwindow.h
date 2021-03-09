@@ -18,7 +18,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void populateList();
     void on_listContacts_currentRowChanged(int currentRow);
 
     void on_submit_clicked();
@@ -33,10 +32,13 @@ private slots:
 
     void on_importButton_clicked();
 
+    void on_search_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString m_contactsFileName;
     QList<Contact*> m_contacts;
+    QList<Contact*> m_currentContactsDisplayed;
     Contact* m_currentContact;
 
     void populateForm();
@@ -44,5 +46,8 @@ private:
     void loadContacts(QString fileName);
     void saveContacts();
     void reduceContactList();
+    void populateList();
+    void populateList(QList<Contact*> list);
+    QList<Contact *> filterList(QString filter);
 };
 #endif // MAINWINDOW_H

@@ -34,6 +34,12 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout;
     QLabel *label;
+    QHBoxLayout *horizontalLayout_3;
+    QHBoxLayout *horizontalLayout;
+    QFormLayout *searchLayout;
+    QLabel *searchLabel;
+    QLineEdit *search_textEdit;
+    QPushButton *search_button;
     QListWidget *listContacts;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *saveContactsButton;
@@ -78,6 +84,36 @@ public:
         label->setMaximumSize(QSize(100, 16777215));
 
         verticalLayout->addWidget(label);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        searchLayout = new QFormLayout();
+        searchLayout->setObjectName(QString::fromUtf8("searchLayout"));
+        searchLabel = new QLabel(centralwidget);
+        searchLabel->setObjectName(QString::fromUtf8("searchLabel"));
+
+        searchLayout->setWidget(0, QFormLayout::LabelRole, searchLabel);
+
+        search_textEdit = new QLineEdit(centralwidget);
+        search_textEdit->setObjectName(QString::fromUtf8("search_textEdit"));
+
+        searchLayout->setWidget(0, QFormLayout::FieldRole, search_textEdit);
+
+
+        horizontalLayout->addLayout(searchLayout);
+
+        search_button = new QPushButton(centralwidget);
+        search_button->setObjectName(QString::fromUtf8("search_button"));
+
+        horizontalLayout->addWidget(search_button);
+
+
+        verticalLayout->addLayout(horizontalLayout);
 
         listContacts = new QListWidget(centralwidget);
         listContacts->setObjectName(QString::fromUtf8("listContacts"));
@@ -216,6 +252,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Contacts", nullptr));
+        searchLabel->setText(QCoreApplication::translate("MainWindow", "Search", nullptr));
+        search_button->setText(QCoreApplication::translate("MainWindow", "Search", nullptr));
         saveContactsButton->setText(QCoreApplication::translate("MainWindow", "Save File", nullptr));
         saveInNewFileButton->setText(QCoreApplication::translate("MainWindow", "Save File as..", nullptr));
         loadFile->setText(QCoreApplication::translate("MainWindow", "Load File", nullptr));
