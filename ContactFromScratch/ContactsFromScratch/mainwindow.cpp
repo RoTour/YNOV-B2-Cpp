@@ -46,6 +46,8 @@ void MainWindow::populateForm()
     ui->firstname_textEdit->setText(m_currentContact->firstname());
     ui->lastname_textEdit->setText(m_currentContact->lastname());
     ui->email_textEdit->setText(m_currentContact->email());
+    ui->phone_editText->setText(m_currentContact->phoneNumber());
+    ui->comments_editText->setText(m_currentContact->comments());
 }
 
 void MainWindow::loadContacts()
@@ -83,7 +85,7 @@ void MainWindow::saveContacts()
     QFile contactFile(m_contactsFileName);
     if (contactFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream flux(&contactFile);
-        for (auto contact : m_contacts) {
+        for (auto contact : qAsConst(m_contacts)) {
             QString contactStr = contact->getLine();
             flux << contactStr;
         }
@@ -102,8 +104,12 @@ void MainWindow::reduceContactList()
     for(auto contact: qAsConst(m_contacts)) {
         filteredList[contact->email()] = contact;
     }
+    int initialSize = m_contacts.length();
     m_contacts.clear();
     m_contacts.append(filteredList.values());
+    if (initialSize != m_contacts.length()) {
+        ui->statusbar->showMessage("Removed " + QString(initialSize-m_contacts.length()) + "duplicated contact(s)");
+    }
 }
 
 void MainWindow::on_submit_clicked()
@@ -112,6 +118,8 @@ void MainWindow::on_submit_clicked()
     m_currentContact->setFirstname(ui->firstname_textEdit->text());
     m_currentContact->setLastname(ui->lastname_textEdit->text());
     m_currentContact->setEmail(ui->email_textEdit->text());
+    m_currentContact->setPhoneNumber(ui->phone_editText->text());
+    m_currentContact->setComments(ui->comments_editText->text());
     populateList();
 }
 
@@ -122,7 +130,7 @@ void MainWindow::on_saveContactsButton_clicked()
 
 void MainWindow::on_addContact_clicked()
 {
-    m_contacts.append(new Contact("", "", ""));
+    m_contacts.append(new Contact("", "", "", "", ""));
     populateList();
     ui->listContacts->setCurrentRow(m_contacts.length()-1);
 }
@@ -137,7 +145,6 @@ void MainWindow::on_loadFile_clicked()
     );
     m_contacts.clear();
     loadContacts();
-//    populateList();
     ui->listContacts->setCurrentRow(0);
     ui->editFile_label->setText(
         QString("Editing: " + m_contactsFileName.mid(m_contactsFileName.lastIndexOf("/")))

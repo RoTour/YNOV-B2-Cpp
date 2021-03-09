@@ -33,12 +33,43 @@ void Contact::setEmail(const QString &email)
 
 QString Contact::getLine()
 {
-    return QString(m_firstname + CONTACT_SEPARATOR + m_lastname + CONTACT_SEPARATOR + m_email + '\n');
+    return QString(
+        m_firstname +
+        CONTACT_SEPARATOR +
+        m_lastname +
+        CONTACT_SEPARATOR +
+        m_email +
+        CONTACT_SEPARATOR +
+        m_phoneNumber +
+        CONTACT_SEPARATOR +
+        m_comments +
+        '\n'
+    );
 }
 
-Contact::Contact(QString firstname, QString lastname, QString email):
-    m_firstname(firstname), m_lastname(lastname), m_email(email) {
-    qDebug() << __PRETTY_FUNCTION__ << m_firstname << m_lastname << m_email;
+QString Contact::phoneNumber() const
+{
+    return m_phoneNumber;
+}
+
+void Contact::setPhoneNumber(const QString &phoneNumber)
+{
+    m_phoneNumber = phoneNumber;
+}
+
+QString Contact::comments() const
+{
+    return m_comments;
+}
+
+void Contact::setComments(const QString &comments)
+{
+    m_comments = comments;
+}
+
+Contact::Contact(QString firstname, QString lastname, QString email, QString phoneNumber, QString comments):
+    m_firstname(firstname), m_lastname(lastname), m_email(email), m_phoneNumber(phoneNumber), m_comments(comments) {
+    qDebug() << __PRETTY_FUNCTION__ << m_firstname << m_lastname << m_email << m_phoneNumber << m_comments;
 }
 
 Contact::Contact(QString infos)
@@ -47,8 +78,12 @@ Contact::Contact(QString infos)
     m_firstname = data.at(0);
     m_lastname = data.at(1);
     m_email = data.at(2);
+    if (data.length() == 5) { // Compatibility purpose
+        m_phoneNumber = data.at(3);
+        m_comments = data.at(4);
+    }
 
-    qDebug() << __PRETTY_FUNCTION__ << m_firstname << m_lastname << m_email;
+    qDebug() << __PRETTY_FUNCTION__ << m_firstname << m_lastname << m_email << m_phoneNumber << m_comments;
 }
 
 

@@ -48,6 +48,10 @@ public:
     QLineEdit *lastname_textEdit;
     QLabel *email_label;
     QLineEdit *email_textEdit;
+    QLabel *phone_label;
+    QLineEdit *phone_editText;
+    QLabel *comments_label;
+    QLineEdit *comments_editText;
     QPushButton *addContact;
     QPushButton *submit;
     QPushButton *importButton;
@@ -146,6 +150,26 @@ public:
 
         formLayout->setWidget(2, QFormLayout::FieldRole, email_textEdit);
 
+        phone_label = new QLabel(centralwidget);
+        phone_label->setObjectName(QString::fromUtf8("phone_label"));
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, phone_label);
+
+        phone_editText = new QLineEdit(centralwidget);
+        phone_editText->setObjectName(QString::fromUtf8("phone_editText"));
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, phone_editText);
+
+        comments_label = new QLabel(centralwidget);
+        comments_label->setObjectName(QString::fromUtf8("comments_label"));
+
+        formLayout->setWidget(4, QFormLayout::LabelRole, comments_label);
+
+        comments_editText = new QLineEdit(centralwidget);
+        comments_editText->setObjectName(QString::fromUtf8("comments_editText"));
+
+        formLayout->setWidget(4, QFormLayout::FieldRole, comments_editText);
+
 
         verticalLayout_2->addLayout(formLayout);
 
@@ -199,6 +223,8 @@ public:
         firstname_label->setText(QCoreApplication::translate("MainWindow", "Firstname", nullptr));
         lastname_label->setText(QCoreApplication::translate("MainWindow", "Lastname", nullptr));
         email_label->setText(QCoreApplication::translate("MainWindow", "Email", nullptr));
+        phone_label->setText(QCoreApplication::translate("MainWindow", "Phone", nullptr));
+        comments_label->setText(QCoreApplication::translate("MainWindow", "Comments", nullptr));
         addContact->setText(QCoreApplication::translate("MainWindow", "Create Contact", nullptr));
         submit->setText(QCoreApplication::translate("MainWindow", "Save Contact", nullptr));
         importButton->setText(QCoreApplication::translate("MainWindow", "Import from another file", nullptr));

@@ -10,9 +10,11 @@ private:
     QString m_firstname;
     QString m_lastname;
     QString m_email;
+    QString m_phoneNumber;
+    QString m_comments;
 public:
 
-    Contact(QString firstname, QString lastname, QString email);
+    Contact(QString firstname, QString lastname, QString email, QString phoneNumber, QString comments);
     Contact(QString infos);
 
     QString firstname() const;
@@ -21,6 +23,10 @@ public:
     void setLastname(const QString &lastname);
     QString email() const;
     void setEmail(const QString &email);
+    QString phoneNumber() const;
+    void setPhoneNumber(const QString &phoneNumber);
+    QString comments() const;
+    void setComments(const QString &comments);
 
     QString getLine();
 };
